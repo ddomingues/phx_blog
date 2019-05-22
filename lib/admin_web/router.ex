@@ -19,6 +19,14 @@ defmodule AdminWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", AdminWeb do
+    pipe_through :api
+
+    resources "/companies", CompanyController, except: [:new, :edit]
+    options   "/companies", CompanyController, :options
+    options   "/companies/:id", CompanyController, :options
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", AdminWeb do
   #   pipe_through :api

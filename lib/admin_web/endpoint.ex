@@ -42,5 +42,7 @@ defmodule AdminWeb.Endpoint do
     key: "_admin_key",
     signing_salt: "lm8ouWa3"
 
+  plug CORSPlug
+
   plug AdminWeb.Router
 end
