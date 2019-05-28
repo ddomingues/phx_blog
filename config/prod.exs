@@ -10,8 +10,19 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :admin, AdminWeb.Endpoint,
-  url: [host: "example.com", port: 80],
+  load_from_system_env: true,
+  http: [port: {:system, "PORT"}], # Needed for Phoenix 1.2 and 1.4. Doesn't hurt for 1.3.
+  server: true, # Without this line, your app will not start the web server!
+  secret_key_base: "${SECRET_KEY_BASE}",
+  url: [host: "${APP_NAME}.gigalixirapp.com", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json"
+
+config :admin, Admin.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: "${DATABASE_URL}",
+  database: "",
+  ssl: true,
+  pool_size: 2
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -62,4 +73,4 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs which loads secrets
 # and configuration from environment variables.
-import_config "prod.secret.exs"
+# import_config "prod.secret.exs"
