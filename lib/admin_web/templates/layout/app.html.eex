@@ -12,7 +12,7 @@
       <section class="container">
         <nav role="navigation">
           <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
+            <li><a href="<%= Routes.post_path(@conn, :index) %>">Blog posts</a></li>
           </ul>
         </nav>
         <a href="http://phoenixframework.org/" class="phx-logo">
